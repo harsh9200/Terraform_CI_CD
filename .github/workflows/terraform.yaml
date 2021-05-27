@@ -2,6 +2,8 @@ name: 'Terraform GitHub Actions'
 on:
   # - pull_request
   push:
+    paths:
+      - okta_app_input/*
     branches:
       - "master"
 jobs:
@@ -23,6 +25,28 @@ jobs:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: 'changed Files'
+        uses: jitterbit/get-changed-files@v1
+        id: abc
+        with:
+          format: space-delimited
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Printing
+        run: |
+          echo "All:"
+          echo "${{ steps.abc.outputs.all }}"
+          echo "Added:"
+          echo "${{ steps.abc.outputs.added }}"
+          echo "Removed:"
+          echo "${{ steps.abc.outputs.removed }}"
+          echo "Renamed:"
+          echo "${{ steps.abc.outputs.renamed }}"
+          echo "Modified:"
+          echo "${{ steps.abc.outputs.modified }}"
+          echo "Added+Modified:"
+          echo "${{ steps.abc.outputs.added_modified }}"
+      
       - name: 'Terraform Apply'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -30,7 +54,7 @@ jobs:
           tf_actions_subcommand: 'apply'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-          args: '-var-file="okta_app_input/my_app.tfvars" -auto-approve '
+          args: '-var-file="${{ steps.abc.outputs.modified }}" -auto-approve '
         env:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
