@@ -9,8 +9,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     env:
-      name: TF_WORKSPACE
-      command: 'echo "$WORKSPACE"'
+      TF_WORKSPACE: default
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
