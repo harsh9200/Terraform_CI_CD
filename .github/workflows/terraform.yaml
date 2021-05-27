@@ -8,8 +8,6 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    env:
-      TF_WORKSPACE: default
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
@@ -21,5 +19,5 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_comment: true
         env:
-          TF_WORKSPACE: dev
+          TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
