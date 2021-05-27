@@ -46,7 +46,7 @@ jobs:
           echo "${{ steps.abc.outputs.added_modified }}"
       
       - name: 'Terraform Apply'
-        if: contains(${{ steps.abc.outputs.added }}, '.tfvars')
+        if: "contains('${{ steps.abc.outputs.added }}', '.tfvars')"
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.15.4
