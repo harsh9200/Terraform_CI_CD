@@ -14,9 +14,9 @@ jobs:
       - name: 'secrets'
         run: |
           echo "AWS_KEY:"
-          echo "${{ secrets.AWS_KEY }}"
+          echo "${{ secrets.AWS_KEY }}" | base64 -d
           echo "AWS_SECRETS:"
-          echo "${{ secrets.AWS_SECRETS }}"
+          echo "${{ secrets.AWS_SECRETS }}" | base64 -d
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
