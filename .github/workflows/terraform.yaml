@@ -73,7 +73,7 @@ jobs:
           tf_actions_subcommand: 'destroy'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-          args: '-var-file="${{ steps.abc.outputs.renamed }}" -auto-approve'
+          args: '-var="TF_VAR_OKTA_API_TOKEN=${{ env.TF_VAR_OKTA_API_TOKEN }}" -var-file="${{ steps.abc.outputs.renamed }}" -auto-approve'
         env:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
