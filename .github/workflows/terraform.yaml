@@ -21,7 +21,7 @@ jobs:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-          args: '-backend-config="access_key=${TF_VAR_AWS_KEY}" -backend-config="secret_key=${TF_VAR_AWS_SECRETS}"'
+          args: '-backend-config="access_key=${{ TF_VAR_AWS_KEY }}" -backend-config="secret_key=${{ TF_VAR_AWS_SECRETS }}"'
         env:
           TF_WORKSPACE: default
           TF_VAR_OKTA_API_TOKEN: ${{ secrets.OKTA_API_TOKEN }}
