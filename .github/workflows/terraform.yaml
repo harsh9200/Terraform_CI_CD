@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@master
       - name: 'secrets'
         run: |
-          "echo AWS_KEY:"
-          "echo ${{ secrets.AWS_KEY }}"
-          "echo AWS_SECRETS:"
-          "echo ${{ secrets.AWS_SECRETS }}"
+          echo "AWS_KEY:"
+          echo "${{ secrets.AWS_KEY }}"
+          echo "AWS_SECRETS:"
+          echo "${{ secrets.AWS_SECRETS }}"
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
