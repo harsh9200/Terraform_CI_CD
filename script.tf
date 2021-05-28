@@ -180,7 +180,7 @@ variable "base_url" {
     description = "Enter orgranisation base URL --> "
 }
 
-variable "api_token" {
+variable "TF_VAR_OKTA_API_TOKEN" {
     description = "Enter API Token --> "
 }
 
