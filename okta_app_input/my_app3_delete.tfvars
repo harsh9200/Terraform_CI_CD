@@ -1,4 +1,4 @@
-api_token = "00_g3RHPadSNcAw3_w_Jw5NiFsw4Bx92fnnDSBIzH2"
+api_token = ""
 application_name = "App_13"
 audience_url = "https://cse-mait-1.com/SSO/metadata"
 base_url = "okta.com"
