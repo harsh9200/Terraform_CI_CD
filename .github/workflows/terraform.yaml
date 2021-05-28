@@ -19,9 +19,13 @@ jobs:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
+          args: '-backend-config "access_key=$TF_VAR_AWS_KEY" -backend-config "secret_key=$TF_VAR_AWS_SECRETS"'
         env:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TF_VAR_AWS_KEY: ${{ secrets.AWS_KEY}}
+          TF_VAR_AWS_SECRETS: ${{ secrets.AWS_SECRETS }}
+          TF_VAR_OKTA_API_TOKEN: ${{ secrets.OKTA_API_TOKEN }}
       
       - name: 'changed Files'
         uses: jitterbit/get-changed-files@v1
@@ -57,6 +61,9 @@ jobs:
         env:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TF_VAR_AWS_KEY: ${{ secrets.AWS_KEY}}
+          TF_VAR_AWS_SECRETS: ${{ secrets.AWS_SECRETS }}
+          TF_VAR_OKTA_API_TOKEN: ${{ secrets.OKTA_API_TOKEN }}
       
       - name: 'Terraform Destroy'
         if: "contains(steps.abc.outputs.renamed, '_delete.tfvars')"
@@ -70,3 +77,6 @@ jobs:
         env:
           TF_WORKSPACE: default
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TF_VAR_AWS_KEY: ${{ secrets.AWS_KEY}}
+          TF_VAR_AWS_SECRETS: ${{ secrets.AWS_SECRETS }}
+          TF_VAR_OKTA_API_TOKEN: ${{ secrets.OKTA_API_TOKEN }}

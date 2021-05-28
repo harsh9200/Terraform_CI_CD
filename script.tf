@@ -1,8 +1,8 @@
 terraform {
     backend "s3" {
         bucket         = "terraformcicd9200"
-        access_key     = ""
-        secret_key     = ""
+        access_key     = "${var.AWS_KEY}"
+        secret_key     = "${var.AWS_SECRETS}"
         key            = "terraform.tfstate"
         region         = "us-east-2"
     }
@@ -20,7 +20,7 @@ terraform {
 provider "okta" {
     org_name  = var.org_name
     base_url  = var.base_url
-    api_token = var.api_token
+    api_token = var.TF_VAR_OKTA_API_TOKEN
 }
 
 
